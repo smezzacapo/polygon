@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="Maine_Boundaries_Town_and_Townships_Polygon" id="Maine_Boundaries_Town_and_Townships_Polygon">
+	<SimpleField name="OBJECTID" type="int"></SimpleField>
+	<SimpleField name="TOWN" type="string"></SimpleField>
+	<SimpleField name="COUNTY" type="string"></SimpleField>
+	<SimpleField name="GEOCODE" type="string"></SimpleField>
+	<SimpleField name="GEOCODENUM" type="int"></SimpleField>
+	<SimpleField name="CNTYCODE" type="string"></SimpleField>
+	<SimpleField name="LAND" type="string"></SimpleField>
+	<SimpleField name="TAG" type="string"></SimpleField>
+	<SimpleField name="ISLAND" type="string"></SimpleField>
+	<SimpleField name="CIREG" type="string"></SimpleField>
+	<SimpleField name="LURC" type="string"></SimpleField>
+	<SimpleField name="BAXTER" type="string"></SimpleField>
+	<SimpleField name="ISLANDID" type="string"></SimpleField>
+	<SimpleField name="TYPE" type="string"></SimpleField>
+	<SimpleField name="DOT_REGNUM" type="int"></SimpleField>
+	<SimpleField name="DOT_REGION" type="string"></SimpleField>
+	<SimpleField name="GlobalID" type="string"></SimpleField>
+	<SimpleField name="created_user" type="string"></SimpleField>
+	<SimpleField name="created_date" type="string"></SimpleField>
+	<SimpleField name="last_edited_user" type="string"></SimpleField>
+	<SimpleField name="last_edited_date" type="string"></SimpleField>
+	<SimpleField name="ShapeSTArea" type="float"></SimpleField>
+	<SimpleField name="ShapeSTLength" type="float"></SimpleField>
+</Schema>
+<Folder><name>sample_poly</name>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#Maine_Boundaries_Town_and_Townships_Polygon">
+		<SimpleData name="OBJECTID">1120</SimpleData>
+		<SimpleData name="TOWN">Lubec</SimpleData>
+		<SimpleData name="COUNTY">Washington</SimpleData>
+		<SimpleData name="GEOCODE">29260</SimpleData>
+		<SimpleData name="GEOCODENUM">29260</SimpleData>
+		<SimpleData name="CNTYCODE">29</SimpleData>
+		<SimpleData name="LAND">y</SimpleData>
+		<SimpleData name="TAG">n</SimpleData>
+		<SimpleData name="ISLAND">y</SimpleData>
+		<SimpleData name="CIREG">n</SimpleData>
+		<SimpleData name="LURC">n</SimpleData>
+		<SimpleData name="BAXTER">n</SimpleData>
+		<SimpleData name="ISLANDID">79-1060</SimpleData>
+		<SimpleData name="TYPE">coast</SimpleData>
+		<SimpleData name="DOT_REGNUM">4</SimpleData>
+		<SimpleData name="DOT_REGION">EASTERN</SimpleData>
+		<SimpleData name="GlobalID">{4418710D-3B6F-4C11-8AE6-F7B1D6153705}</SimpleData>
+		<SimpleData name="created_date">1970/01/01 00:00:00+00</SimpleData>
+		<SimpleData name="last_edited_date">1970/01/01 00:00:00+00</SimpleData>
+		<SimpleData name="ShapeSTArea">48.62646484375</SimpleData>
+		<SimpleData name="ShapeSTLength">31.2097419986275</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-67.0137734843147,44.7796838877351 -67.0137153869697,44.779696379361 -67.0136832271852,44.7797588372088 -67.0136890957846,44.7797949482302 -67.0137212941307,44.7797775039932 -67.01375270296,44.7797600460107 -67.0137734843147,44.7796838877351</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  
+    <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#Maine_Boundaries_Town_and_Townships_Polygon">
+		<SimpleData name="OBJECTID">1119</SimpleData>
+		<SimpleData name="TOWN">Bangor</SimpleData>
+		<SimpleData name="COUNTY">Penobscot</SimpleData>
+		<SimpleData name="GEOCODE">19020</SimpleData>
+		<SimpleData name="GEOCODENUM">19020</SimpleData>
+		<SimpleData name="CNTYCODE">19</SimpleData>
+		<SimpleData name="LAND">y</SimpleData>
+		<SimpleData name="TAG">n</SimpleData>
+		<SimpleData name="ISLAND">y</SimpleData>
+		<SimpleData name="CIREG">n</SimpleData>
+		<SimpleData name="LURC">n</SimpleData>
+		<SimpleData name="BAXTER">n</SimpleData>
+		<SimpleData name="ISLANDID">69-1001</SimpleData>
+		<SimpleData name="TYPE">coast</SimpleData>
+		<SimpleData name="DOT_REGNUM">4</SimpleData>
+		<SimpleData name="DOT_REGION">EASTERN</SimpleData>
+		<SimpleData name="GlobalID">{BBD0DAEA-9004-4683-86D9-E5AB5063BFFC}</SimpleData>
+		<SimpleData name="created_date">1970/01/01 00:00:00+00</SimpleData>
+		<SimpleData name="last_edited_date">1970/01/01 00:00:00+00</SimpleData>
+		<SimpleData name="ShapeSTArea">1283.02612304688</SimpleData>
+		<SimpleData name="ShapeSTLength">174.877265223345</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-68.768523924819,44.7978091906227 -68.7684851889244,44.7978136141307 -68.7684467897047,44.7978315407802 -68.7684336412868,44.7978585190652 -68.7684078544801,44.7978854753219 -68.7684204066144,44.7979080072948 -68.7684270160553,44.7979350256401 -68.7684458539258,44.7979665717028 -68.768445745913,44.7979935791276 -68.7684583018891,44.7980161084031 -68.7684994070931,44.7981107162328 -68.7685330984943,44.7981828034018 -68.7685519043162,44.7982233498277 -68.7685513658913,44.7982593577264 -68.7685574717255,44.7983133835844 -68.7685727171691,44.7983539281922 -68.7686131802908,44.7984125229848 -68.768637909743,44.7984530813962 -68.7686563713955,44.798480127336 -68.7686749050159,44.7984891653235 -68.7687061026951,44.7984937305331 -68.7687468177442,44.7984893109582 -68.7687753183961,44.7984758661937 -68.7688066586022,44.7984444226758 -68.7688194087236,44.7984174399435 -68.7688195165565,44.7983904343204 -68.7688165045043,44.7983544219349 -68.7688044660999,44.7983003813811 -68.7687888439876,44.7982553394187 -68.7687645809088,44.7981967747872 -68.7687242616342,44.7981021686459 -68.7686995669769,44.7980526062731 -68.7686702774676,44.7979670264963 -68.7686640623882,44.7979400080639 -68.7686260588716,44.7978589090463 -68.7686004495272,44.7978408526652 -68.7685621980571,44.7978227706603 -68.768523924819,44.7978091906227</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>
