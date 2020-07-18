@@ -28,6 +28,19 @@ def coordinates_rectangle_two():
         (80, -60)
     )
 
+@pytest.fixture
+def coordinates_rectangle_three():
+    """
+    Coordinates (lat, long) of a simple rectangle.
+    Inside rectangle_one, outside rectangle_two
+    """
+    return (
+        (-5, -25),
+        (-5, 25),
+        (15, 25),
+        (15, -25)
+    )
+
 def test_polygon_creation(coordinates_rectangle_one):
     """
     Confirm a Polygon object is created with the correct
@@ -39,13 +52,20 @@ def test_polygon_creation(coordinates_rectangle_one):
     assert(poly._min_y == -10)
     assert(poly._max_y == 20)
 
-def test_outside_rectangles(coordinates_rectangle_one, coordinates_rectangle_two):
+def test_outside_rectangles(coordinates_rectangle_one, coordinates_rectangle_two, coordinates_rectangle_three):
     """
     Confirm rectangle_two is outside of rectangle_one
     """
     rectangle_one = Polygon(coordinates_rectangle_one, 'base_file_name', 1)
     rectangle_two = Polygon(coordinates_rectangle_two, 'test_file_name', 1)
+    rectangle_three = Polygon(coordinates_rectangle_three, 'test_file_name', 2)
     assert(const.OUTSIDE == rectangle_one.compare_polygon(rectangle_two))
+    assert(const.OUTSIDE == rectangle_two.compare_polygon(rectangle_three)) 
+
+def test_inside_rectangles(coordinates_rectangle_one, coordinates_rectangle_three):
+    rectangle_one = Polygon(coordinates_rectangle_one, 'base_file_name', 1)
+    rectangle_three = Polygon(coordinates_rectangle_three, 'test_file_name', 1)    
+    assert(const.INSIDE == rectangle_one.compare_polygon(rectangle_three))
 
 
 

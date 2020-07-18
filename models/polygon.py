@@ -58,6 +58,9 @@ class Polygon():
 
         y = mx+b
         """
+        # Check for vertical line - undefined slope
+        if cur_coord.x-next_coord.x == 0:
+            return Coordinate(cur_coord.x, y)
         m = (cur_coord.y-next_coord.y) / (cur_coord.x-next_coord.x)
         b = cur_coord.y
         if x is not None:
@@ -76,20 +79,26 @@ class Polygon():
         check_greater_than: True for upper/right bounds. False for lower/left bounds
         """
         for i, cur_coord in enumerate(self.all_coords):
-            if i == len(self.all_coords) - 1:
+            if i == len(self.all_coords):
                 break
-            next_coord = self.all_coords[i+1]
+            # Final coordinate has a next_coord of the very first coordinate checked
+            next_coord = None
+            if i == len(self.all_coords) - 1:
+                next_coord = self.all_coords[0]
+            else:
+                next_coord = self.all_coords[i+1]
             if axis == const.Y_AXIS:
                 if min(cur_coord.y, next_coord.y) <= coordinate.y <= max(cur_coord.y, next_coord.y):
                     slope_point = self._get_point_by_slope(cur_coord, next_coord, y=coordinate.y)
-                    return slope_point.x >= coordinate.x if check_greater_than else slope_point.x <= coordinate.x
+                    if (check_greater_than and slope_point.x >= coordinate.x) or (not check_greater_than and slope_point.x <= coordinate.x):
+                        return True
             elif axis == const.X_AXIS:
                 if min(cur_coord.x, next_coord.x) <= coordinate.x <= max(cur_coord.x, next_coord.x):
                     slope_point = self._get_point_by_slope(cur_coord, next_coord, x=coordinate.x)
-                    return slope_point.y >= coordinate.y if check_greater_than else slope_point.y <= coordinate.y
+                    if (check_greater_than and slope_point.y >= coordinate.y) or (not check_greater_than and slope_point.y <= coordinate.y):
+                        return True
             else:
                 raise ValueError('Invalid axis provided for _check_bound: %s', axis)
-
         return False
 
 
@@ -136,6 +145,7 @@ class Polygon():
             results.append(
                 self._check_coordinate(coord)
             )
+        log.info(results)
         if not results:
             return const.NO_RESULT
         if all(result for result in results):
