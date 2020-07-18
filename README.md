@@ -28,5 +28,4 @@ TODO:
 1. Generate better test_kml sample files and test more thoroughly.
 2. This does not account for the curvature of the earth and as such is only an approximation. There are formulas for converting between lat/long and x/y that could be leveraged potentially.
 3. Github actions to build / push docker image to Dockerhub
-4. The case in which a test polygon's coordinates are all within the x/y min/max vaues of the base polygon will fail to recognize intersection if all test coordinates are outside the base polygon. In addition to the bound checks, must add an explicit intersection check.
-5. Add more complex test cases beyond simple rectangle checks.
+4. Add more complex test cases beyond simple rectangle checks.

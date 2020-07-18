@@ -133,6 +133,55 @@ class Polygon():
             return self._check_coord_bounds(coordinate)
         return False
 
+    def _intersection_helper(self, a, b, c):
+        """
+        """
+        return (c.y - a.y) * (b.x - a.x) > (b.y - a.y) * (c.x - a.x)
+    
+    def _check_segment_intersection(self, a, b, c, d):
+        """
+        """
+        return (self._intersection_helper(a, c, d) != self._intersection_helper(b, c, d)
+        and self._intersection_helper(a, b, c) != self._intersection_helper(a, b, d)
+        )
+
+    def _check_unbound_intersection(self, test_polygon):
+        """
+        test_polygon has no coordinates bound by edges of self.
+        It is still possible that the two polygons intersect.
+        Return True if any intersection is found.
+
+        TODO is there a way to more quickly exclude segments rather than iterating
+        over every single one?
+
+        Formula for checking if two segments intersect taken from here:
+        https://stackoverflow.com/questions/3838329/how-can-i-check-if-two-segments-intersect
+        """
+        for ti, cur_test_coord in enumerate(test_polygon.all_coords):
+            if ti == len(test_polygon.all_coords):
+                break
+            next_test_coord = None
+            if ti == len(test_polygon.all_coords) - 1:
+                next_test_coord = test_polygon.all_coords[0]
+            else:
+                next_test_coord = test_polygon.all_coords[ti+1]
+
+            for bi, cur_base_coord in enumerate(self.all_coords):
+                if bi == len(self.all_coords):
+                    break
+                next_base_coord = None
+                if bi == len(self.all_coords) - 1:
+                    next_base_coord = self.all_coords[0]
+                else:
+                    next_base_coord = self.all_coords[bi+1]
+                is_intersection = self._check_segment_intersection(
+                    cur_test_coord, next_test_coord,
+                    cur_base_coord, next_base_coord
+                )
+                if is_intersection:
+                    return True
+        return False
+
 
     def compare_polygon(self, polygon):
         """
@@ -145,9 +194,15 @@ class Polygon():
             results.append(
                 self._check_coordinate(coord)
             )
-        log.info(results)
         if not results:
             return const.NO_RESULT
+
+        # Handle potential intersections where no test coordinates are fully bound
+        if all(not result for result in results):
+            is_intersect = self._check_unbound_intersection(polygon)
+            if is_intersect:
+               return const.INTERSECT
+
         if all(result for result in results):
             return const.INSIDE
         if all(not result for result in results):

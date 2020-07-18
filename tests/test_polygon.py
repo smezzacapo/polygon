@@ -54,6 +54,20 @@ def coordinates_rectangle_four():
         (0, -20)
     )
 
+@pytest.fixture
+def coordinates_rectangle_five():
+    """
+    Coordinates (lat, long) of a simple rectangle.
+    Intersects rectangle_one WITHOUT having any coordinates
+    contained within rectangle_one
+    """
+    return (
+        (-20, -10),
+        (-20, 10),
+        (30, 10),
+        (30, -10)
+    )
+
 def test_polygon_creation(coordinates_rectangle_one):
     """
     Confirm a Polygon object is created with the correct
@@ -80,10 +94,17 @@ def test_inside_rectangles(coordinates_rectangle_one, coordinates_rectangle_thre
     rectangle_three = Polygon(coordinates_rectangle_three, 'test_file_name', 1)    
     assert(const.INSIDE == rectangle_one.compare_polygon(rectangle_three))
 
-def test_intersection_rectangles(coordinates_rectangle_one, coordinates_rectangle_four):
+def test_intersection_rectangles(coordinates_rectangle_one, coordinates_rectangle_four, coordinates_rectangle_five):
+    """
+    Test intersection between two rectangles.
+    Condition 1: Test Rectangle has at least 1 coordinate within Base Rectangle
+    Condition 2: Test Rectangle has no coordinate within Base Rectangle
+    """
     rectangle_one = Polygon(coordinates_rectangle_one, 'base_file_name', 1)
-    rectangle_four = Polygon(coordinates_rectangle_four, 'test_file_name', 1) 
+    rectangle_four = Polygon(coordinates_rectangle_four, 'test_file_name', 1)
+    rectangle_five = Polygon(coordinates_rectangle_five, 'test_file_name', 2)
     assert(const.INTERSECT == rectangle_one.compare_polygon(rectangle_four))
+    assert(const.INTERSECT == rectangle_one.compare_polygon(rectangle_five))
 
 
 
