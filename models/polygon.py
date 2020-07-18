@@ -79,11 +79,11 @@ class Polygon():
             if i == len(self.all_coords) - 1:
                 break
             next_coord = self.all_coords[i+1]
-            if axis == Y_AXIS:
+            if axis == const.Y_AXIS:
                 if min(cur_coord.y, next_coord.y) <= coordinate.y <= max(cur_coord.y, next_coord.y):
                     slope_point = self._get_point_by_slope(cur_coord, next_coord, y=coordinate.y)
                     return slope_point.x >= coordinate.x if check_greater_than else slope_point.x <= coordinate.x
-            elif axis == X_AXIS:
+            elif axis == const.X_AXIS:
                 if min(cur_coord.x, next_coord.x) <= coordinate.x <= max(cur_coord.x, next_coord.x):
                     slope_point = self._get_point_by_slope(cur_coord, next_coord, x=coordinate.x)
                     return slope_point.y >= coordinate.y if check_greater_than else slope_point.y <= coordinate.y
