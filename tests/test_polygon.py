@@ -41,6 +41,19 @@ def coordinates_rectangle_three():
         (15, -25)
     )
 
+@pytest.fixture
+def coordinates_rectangle_four():
+    """
+    Coordinates (lat, long) of a simple rectangle
+    Intersects rectangle_one
+    """
+    return (
+        (-30, 20),
+        (-30, 40),
+        (0, 40),
+        (0, -20)
+    )
+
 def test_polygon_creation(coordinates_rectangle_one):
     """
     Confirm a Polygon object is created with the correct
@@ -66,6 +79,11 @@ def test_inside_rectangles(coordinates_rectangle_one, coordinates_rectangle_thre
     rectangle_one = Polygon(coordinates_rectangle_one, 'base_file_name', 1)
     rectangle_three = Polygon(coordinates_rectangle_three, 'test_file_name', 1)    
     assert(const.INSIDE == rectangle_one.compare_polygon(rectangle_three))
+
+def test_intersection_rectangles(coordinates_rectangle_one, coordinates_rectangle_four):
+    rectangle_one = Polygon(coordinates_rectangle_one, 'base_file_name', 1)
+    rectangle_four = Polygon(coordinates_rectangle_four, 'test_file_name', 1) 
+    assert(const.INTERSECT == rectangle_one.compare_polygon(rectangle_four))
 
 
 
