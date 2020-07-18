@@ -4,15 +4,8 @@ and providing methods to compare coordinates across polygons
 """
 import logging as log
 
+from models import const
 from models.coordinate import Coordinate
-
-INTERSECT = "intersect"
-INSIDE = "inside"
-OUTSIDE = "outside"
-NO_RESULT = "no result"
-
-X_AXIS = "x-axis"
-Y_AXIS = "y-axis"
 
 
 class Polygon():
@@ -104,16 +97,16 @@ class Polygon():
         """
         Upper / lower / left / right check
         """
-        is_upper = self._check_bound(coordinate, X_AXIS, check_greater_than=True)
+        is_upper = self._check_bound(coordinate, const.X_AXIS, check_greater_than=True)
         if not is_upper:
             return False
-        is_lower = self._check_bound(coordinate, X_AXIS, check_greater_than=False)
+        is_lower = self._check_bound(coordinate, const.X_AXIS, check_greater_than=False)
         if not is_lower:
             return False
-        is_left = self._check_bound(coordinate, Y_AXIS, check_greater_than=False)
+        is_left = self._check_bound(coordinate, const.Y_AXIS, check_greater_than=False)
         if not is_left:
             return False
-        is_right = self._check_bound(coordinate, Y_AXIS, check_greater_than=True)
+        is_right = self._check_bound(coordinate, const.Y_AXIS, check_greater_than=True)
         if not is_right:
             return False
         return True
@@ -144,11 +137,11 @@ class Polygon():
                 self._check_coordinate(coord)
             )
         if not results:
-            return NO_RESULT
+            return const.NO_RESULT
         if all(result for result in results):
-            return INSIDE
+            return const.INSIDE
         if all(not result for result in results):
-            return OUTSIDE
+            return const.OUTSIDE
         if any(result for result in results):
-            return INTERSECT
-        return NO_RESULT
+            return const.INTERSECT
+        return const.NO_RESULT

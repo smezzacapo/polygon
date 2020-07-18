@@ -9,15 +9,11 @@ import sys
 # Note - this library is only used to extract coordinates from KML files in _create_polygons(). No other functionality may be leveraged.
 from fastkml import kml
 
+from models import const
 from models.polygon import Polygon
 
 log.basicConfig(stream=sys.stdout, level=log.INFO,
                 format='%(asctime)s - %(levelname)s - %(message)s')
-
-
-BASE_KML_DIR = 'base_kml'
-TEST_KML_DIR = 'test_kml'
-KML_EXT = ".kml"
 
 
 def _get_all_kml_files(directory):
@@ -25,7 +21,7 @@ def _get_all_kml_files(directory):
     Get file names of all KML files in directory
     """
     for file in os.listdir(directory):
-        if file.endswith(KML_EXT):
+        if file.endswith(const.KML_EXT):
             yield os.path.join(directory, file)
 
 def _create_polygons(directory):
@@ -58,13 +54,13 @@ def _create_polygons(directory):
 def main():
     log.info('Beginning Program.')
     log.info('Creating polygons for all base KML files.')
-    base_polygons = _create_polygons(BASE_KML_DIR)
+    base_polygons = _create_polygons(const.BASE_KML_DIR)
     if not base_polygons:
-        raise ValueError("No Base Polygons Found - add a KML file to %s" % BASE_KML_DIR)
+        raise ValueError("No Base Polygons Found - add a KML file to %s" % const.BASE_KML_DIR)
     log.info("Creating polygons for all test KML files")
-    test_polygons = _create_polygons(TEST_KML_DIR)
+    test_polygons = _create_polygons(const.TEST_KML_DIR)
     if not test_polygons:
-        raise ValueError("No Test Polygons Found - add a KML file to %s" % TEST_KML_DIR)
+        raise ValueError("No Test Polygons Found - add a KML file to %s" % const.TEST_KML_DIR)
     for test_polygon in test_polygons:
         for base_polygon in base_polygons:
             result = base_polygon.compare_polygon(test_polygon)
