@@ -13,15 +13,15 @@ Algorithm:
       4. Lower Bound: The test coordinate Y value is greater than the derived base polygon coordinate's Y value.
 4. If all test coordinates are True then the test polygon is contained within the base polygon. If all test coordinates are False then the test polygon is outside of the base polygon. If at least one but not all test coordinates are True then the test polygon intersects the base polygon.
 
-
-
-Running with Docker:
+Running Manually within Docker:
 
 `docker build -t (imageName) . `
 
-`docker run -dit (imageName)` 
+`docker run -dit (imageName)`
 
+`docker exec -it (container id) /bin/bash`
 
+`python test_kml.py`
 
 TODO:
 
